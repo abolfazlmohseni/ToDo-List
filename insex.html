@@ -9,89 +9,104 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="dark">
     <div class="conteyner">
         <div class="left-conteyner">
             <div class="top-bar">
-                <h1>تو میتونی که انجامش بدی</h1>
-                <div class="ModBox">
-                    <div>
-                        <i class="bi bi-moon-stars-fill"></i>
+                <h1>تو میتونی انجامش بدی</h1>
+                <div class="switch-box">
+                    <div class="switch">
+                        <div class="ligh"><svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512"
+                                height="25px" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="25px"
+                                xml:space="preserve">
+                                <g>
+                                    <g>
+                                        <path
+                                            d="M256,144c-61.75,0-112,50.25-112,112s50.25,112,112,112s112-50.25,112-112S317.75,144,256,144z M256,336    c-44.188,0-80-35.812-80-80c0-44.188,35.812-80,80-80c44.188,0,80,35.812,80,80C336,300.188,300.188,336,256,336z M256,112    c8.833,0,16-7.167,16-16V64c0-8.833-7.167-16-16-16s-16,7.167-16,16v32C240,104.833,247.167,112,256,112z M256,400    c-8.833,0-16,7.167-16,16v32c0,8.833,7.167,16,16,16s16-7.167,16-16v-32C272,407.167,264.833,400,256,400z M380.438,154.167    l22.625-22.625c6.25-6.25,6.25-16.375,0-22.625s-16.375-6.25-22.625,0l-22.625,22.625c-6.25,6.25-6.25,16.375,0,22.625    S374.188,160.417,380.438,154.167z M131.562,357.834l-22.625,22.625c-6.25,6.249-6.25,16.374,0,22.624s16.375,6.25,22.625,0    l22.625-22.624c6.25-6.271,6.25-16.376,0-22.625C147.938,351.583,137.812,351.562,131.562,357.834z M112,256    c0-8.833-7.167-16-16-16H64c-8.833,0-16,7.167-16,16s7.167,16,16,16h32C104.833,272,112,264.833,112,256z M448,240h-32    c-8.833,0-16,7.167-16,16s7.167,16,16,16h32c8.833,0,16-7.167,16-16S456.833,240,448,240z M131.541,154.167    c6.251,6.25,16.376,6.25,22.625,0c6.251-6.25,6.251-16.375,0-22.625l-22.625-22.625c-6.25-6.25-16.374-6.25-22.625,0    c-6.25,6.25-6.25,16.375,0,22.625L131.541,154.167z M380.459,357.812c-6.271-6.25-16.376-6.25-22.625,0    c-6.251,6.25-6.271,16.375,0,22.625l22.625,22.625c6.249,6.25,16.374,6.25,22.624,0s6.25-16.375,0-22.625L380.459,357.812z"
+                                            fill="#ffffff" />
+                                    </g>
+                                </g>
+                            </svg></div>
+                        <div class="flicker"></div>
+                        <div class="moon"></div>
                     </div>
-                    <div>
-                        <i class="bi bi-brightness-high-fill"></i>
-                    </div>
-                    <div></div>
                 </div>
             </div>
-            <div class="add_tasck-box">
-                <input type="text" id="input_add-tasck">
-                <button id="BtnSunmit">ثبت</button>
+            <div class="input-box">
+                <div class="add_tasck-box">
+                    <input type="text" id="input_add-tasck">
+                    <button id="BtnSunmit">ثبت</button>
+                </div>
+                <div class="editor_tasck-box">
+                    <input type="text" id="input_edit-tasck">
+                    <button id="BtnEditor">ویرایش</button>
+                    <button id="BtnClese">بیخیال</button>
+                </div>
             </div>
-            <div class="editor_tasck-box">
-                <input type="text" id="input_edit-tasck">
-                <button class="BtnEditor">ویرایش</button>
-                <button id="BtnClese">بیخیال</button>
+            <div class="wallpaper-conteyner">
+                <div class="wallpaper-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="791" height="791" fill="none">
+                        <g opacity=".1">
+                            <path stroke="#fff" stroke-miterlimit="10" stroke-width="2"
+                                d="M529.197 644.147c137.681-74.018 189.289-245.635 115.27-383.315-74.018-137.681-245.635-189.29-383.315-115.271-137.681 74.019-189.29 245.635-115.271 383.316 74.019 137.681 245.635 189.289 383.316 115.27Z"
+                                style="stroke:#5e5e5e;stroke-opacity:1" />
+                            <path stroke="#fff" stroke-miterlimit="10" stroke-width="2"
+                                d="M510.465 11.525 11.882 279.568l268.043 498.583 498.583-268.043L510.465 11.525Z"
+                                style="stroke:#5e5e5e;stroke-opacity:1" />
+                            <path fill="#fff"
+                                d="M16.432 288.115a8.99 8.99 0 0 0 3.662-12.175 8.99 8.99 0 1 0-3.661 12.175ZM514.973 20.093a8.99 8.99 0 1 0-8.513-15.836 8.99 8.99 0 0 0 8.513 15.836ZM284.454 786.656a8.99 8.99 0 0 0 3.661-12.175 8.991 8.991 0 1 0-3.661 12.175ZM782.994 518.634a8.99 8.99 0 0 0-8.514-15.836 8.989 8.989 0 0 0-3.661 12.175 8.989 8.989 0 0 0 12.175 3.661Z"
+                                style="fill:#5e5e5e;fill-opacity:1" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="wallpaper-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="844" height="844" viewBox="0 0 844 844" fill="none">
+                        <g opacity="0.2">
+                            <rect x="1.66113" y="421.801" width="198.369" height="198.369"
+                                transform="rotate(-45 1.66113 421.801)" stroke="#5e5e5e" />
+                            <rect x="282.198" y="421.8" width="198.369" height="198.369"
+                                transform="rotate(-45 282.198 421.8)" stroke="#5e5e5e" />
+                            <rect x="282.196" y="702.336" width="198.369" height="198.369"
+                                transform="rotate(-45 282.196 702.336)" stroke="#5e5e5e" />
+                            <rect x="282.194" y="141.268" width="198.369" height="198.369"
+                                transform="rotate(-45 282.194 141.268)" stroke="#5e5e5e" />
+                            <rect x="562.729" y="421.803" width="198.369" height="198.369"
+                                transform="rotate(-45 562.729 421.803)" stroke="#5e5e5e" />
+                            <path d="M213.097 490.903L353.365 631.171" stroke="#5e5e5e" />
+                            <path
+                                d="M494.457 209.541L521.932 237.016C546.292 261.376 546.292 300.871 521.932 325.231L494.044 353.12"
+                                stroke="5e5e5e" />
+                            <circle cx="282.231" cy="421.801" r="11.7262" transform="rotate(-45 282.231 421.801)"
+                                fill="5e5e5e" />
+                            <circle cx="634.763" cy="349.8" r="11.7262" transform="rotate(-45 634.763 349.8)"
+                                fill="5e5e5e" />
+                        </g>
+                    </svg>
+                </div>
             </div>
         </div>
+
         <div class="right-conteyner">
             <div class="tasck-conteyner">
                 <div class="top-box">
 
                     <div class="top_right-box">
-                        <p>هنوز کارات مونده!</p> <!--  -->
+                        <p class="tasck-number-text"></p> <!--  -->
                     </div>
                     <div class="top_left-box">
-                        <p>3</p><!--  -->
+                        <p class="numbertasck"></p><!--  -->
                         <p>/</p>
-                        <p>1</p> <!--  -->
+                        <p class="numbertiktasck"></p> <!--  -->
                     </div>
                 </div>
                 <div class="tasck-box">
-                    <p>همه کارات اوکی شده!</p>
-                    <!-- beta -->
-                    <div class="tasck-items">
-                        <div class="left_icon-tasck">
-                            <i class="bi bi-square"></i>
-                        </div>
-                        <div class="tasck-text">
-                            <p>خرید خونه</p>
-                        </div>
-                        <div class="right_icon-tasck">
-                            <i class="bi bi-trash"></i>
-                            <i class="bi bi-pencil-square"></i>
-                        </div>
-                    </div>
-                    <div class="tasck-items">
-                        <div class="left_icon-tasck">
-                            <i class="bi bi-square"></i>
-                        </div>
-                        <div class="tasck-text">
-                            <p>خرید خونه</p>
-                        </div>
-                        <div class="right_icon-tasck">
-                            <i class="bi bi-trash"></i>
-                            <i class="bi bi-pencil-square"></i>
-                        </div>
-                    </div>
-                    <div class="tasck-items">
-                        <div class="left_icon-tasck">
-                            <i class="bi bi-square"></i>
-                        </div>
-                        <div class="tasck-text">
-                            <p>خرید خونه</p>
-                        </div>
-                        <div class="right_icon-tasck">
-                            <i class="bi bi-trash"></i>
-                            <i class="bi bi-pencil-square"></i>
-                        </div>
-                    </div>
-                    <!-- beta -->
+                    <p class="content-text" id="close">!هیچ کاری اضافه نکردی</p>
                 </div>
             </div>
         </div>
-       
     </div>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

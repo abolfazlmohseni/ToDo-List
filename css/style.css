@@ -1,105 +1,316 @@
 @font-face {
-    font-family:yekanbakh;
+    font-family: yekanbakh;
     src: url(../font/YekanBakh-Regular.woff2);
 }
+
 @font-face {
     font-family: iransans;
     src: url(../font/IRANSansX-Light.woff2);
 }
+
 body {
     margin: 0;
     padding: 0;
+    transition: all ease 0.5s;
 }
+
 * {
     font-family: yekanbakh;
 }
+
 .conteyner {
     width: 100%;
     height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    
+
 }
+
 .right-conteyner {
     width: 40%;
 
 }
+
 .tasck-conteyner {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
     height: 90vh;
+    box-shadow: 2px 2px 6px #00000045, -2px -2px 6px #00000045;
+    border-radius: 6px;
+    margin-top: 3rem;
 }
+
 .top-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
+    height: 130px;
 }
+
 .top_left-box {
-
+    display: flex;
+    font-size: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background: #1467d4;
+    box-shadow: 2px 2px 6px #2896f0, -2px -2px 6px #2896f0;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
 }
+
 .top_right-box {
-
+    font-size: 20px;
+    margin-right: 15px;
 }
+
+#close {
+    display: none;
+}
+
+#success {
+    display: none;
+}
+
 .tasck-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    overflow-y: auto;
+    height: 71vh;
 
 }
+
+.content-text {
+    color: #000;
+    font-size: 18px;
+}
+
 .tasck-items {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 0 5px;
+    box-shadow: 1px 1px 4px #00000030, -1px -1px 4px #00000030;
+}
+
+.tasck-content {
+    margin-right: 15px;
 
 }
-.left_icon-tasck {
 
+.left_icon-tasck,
+.tasck-box {
+    font-size: 20px;
 }
+
 .bi-square {
-
+    margin-top: 8px;
 }
+
 .tasck-text {
-
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
 }
+
 .right_icon-tasck {
-
+    margin-top: 5px;
 }
-.bi-trash {
 
-}
-.bi-pencil-square {
-
-}
 .left-conteyner {
     width: 60%;
 }
+
 .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 110px;
+    margin-left: 20px;
+    margin-top: 2rem;
+}
+
+.switch {
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: rgb(39, 38, 38);
+    position: relative;
+    margin-top: 15px;
+}
+
+.flicker {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transition: 0.3s;
+    box-shadow: inset 4px 4px 4px rgb(255, 255, 255),
+        inset -4px -4px 4px rgba(255, 255, 255, 0.9);
+}
+
+.moon {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 0 rgb(255, 255, 255);
+    position: absolute;
+    top: 5px;
+    left: 45px;
+}
+
+.ligh {
+    width: 25px;
+    height: 25px;
+
+    position: absolute;
+    top: 7px;
+    left: 10px;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 4rem;
+    margin-left: 20px;
+}
+
+input {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px #00000050, -2px -2px 6px #00000050;
+    width: 250px;
+    height: 25px;
+    padding: 5px 10px;
+    font-size: 18px;
+    direction: rtl;
+}
+
+input:focus {
+    box-shadow: 2px 2px 6px #2896f060, -2px -2px 6px #2896f060;
 
 }
-.ModBox {
 
-}
-.bi-moon-stars-fill {
-
-}
-.bi-brightness-high-fill {
-
-}
-.add_tasck-box {
+/* .add_tasck-box {
 
 }
 .input_add-tasck {
 
+} */
+#BtnSunmit {
+    border: none;
+    width: 70px;
+    height: 35px;
+    font-size: 18px;
+    margin-left: 15px;
+    background-color: #1467d4;
+    box-shadow: 1px 1px 5px #00000030, -1px -1px 5px #00000030;
+    color: #fff;
+    border-radius: 5px;
 }
-.BtnSunmit {
 
-}
-.editor_tasck-box {
+/* .editor_tasck-box {
 
 }
 .input_edit-tasck {
 
-}
-.BtnEditor {
+} */
+#BtnEditor {
+    border: none;
+    width: 70px;
+    font-size: 18px;
+    margin-left: 15px;
+    box-shadow: 1px 1px 5px #00000030, -1px -1px 5px #00000030;
+    border-radius: 5px;
+    background-color: #1a8917;
+    color: #fff;
+    height: 35px;
 
 }
-.BtnClese {
 
+#BtnClese {
+    border: none;
+    width: 70px;
+    font-size: 18px;
+    margin-left: 15px;
+    box-shadow: 1px 1px 5px #00000030, -1px -1px 5px #00000030;
+    border-radius: 5px;
+    background-color: #d12929;
+    color: #fff;
+    height: 35px;
+
+}
+
+.wallpaper-conteyner {
+    position: relative;
+    display: flex;
+    width: 100%;
+    z-index: -2;
+}
+
+.wallpaper-1 {
+    position: absolute;
+    width: 50%;
+    height: 450px;
+    right: 0;
+    top: -20px;
+    z-index: -2;
+
+}
+
+.wallpaper-2 {
+    position: absolute;
+    width: 50%;
+    height: 450px;
+    left: 0;
+    top: -20px;
+    z-index: -2;
+
+}
+.editor_tasck-box {
+    display: none;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #aaa;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f2f2f2;
+}
+/* Color For Dark Mod */
+.dark .flicker {
+    transform: translateX(40px);
+}
+.dark  {
+    background-color:rgb(24, 24, 24) ;
+}
+
+.dark .top-bar,.dark .tasck-conteyner {
+    color: #fff;
+}
+.dark input:focus {
+        box-shadow: 2px 2px 8px #2896f0, -2px -2px 8px #2896f0;
 }
