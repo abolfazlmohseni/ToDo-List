@@ -1,193 +1,172 @@
-// Shortcut
-let $ = document
+let $ = document;
 // Select ELement Html
-const switchElements = $.querySelectorAll('.switch');
-const InuptElemtAddTasck = $.querySelector("#input_add-tasck")
-const BtnElemtAddTasck = $.querySelector("#BtnSunmit")
-let InputElementEditTasck = $.querySelector(".editor_tasck-box")
+const InuptElemtAddTasck = $.querySelector("#input_add-tasck");
+const BtnElemtAddTasck = $.querySelector("#BtnSunmit");
+let InputElementEditTasck = $.querySelector(".editor_tasck-box");
 
-// Dark&Light Mode  
-switchElements.forEach(function (switchElement) {
-    switchElement.addEventListener('click', function () {
-        document.body.classList.toggle('dark');
+// Load tasks from localStorage
+function loadTasks() {
+    return JSON.parse(localStorage.getItem('tasks')) || [];
+}
 
-        if (document.body.classList.contains('dark')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
+// Save tasks to localStorage
+function saveTasks(tasks) {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// Render tasks
+function renderTasks() {
+    const tasks = loadTasks();
+    const taskBox = $.querySelector(".tasck-box");
+    taskBox.innerHTML = ''; // Clear existing tasks
+
+    tasks.forEach(task => {
+        addTaskToDOM(task.text, task.completed, task.id);
     });
-});
-// Add Tasck
+
+    CountingTascks();
+    CheckNumberItems();
+}
+
+// Add task to DOM
+function addTaskToDOM(text, completed = false, id = Date.now()) {
+    let ConteynerNewTasck = $.createElement("div");
+    let TasckText = $.createElement("div");
+    let Icon1 = $.createElement("i");
+    let ContentTasck = $.createElement("p");
+    let moreIconsConteyner = $.createElement("div");
+    let Icon2 = $.createElement("i");
+    let Icon3 = $.createElement("i");
+
+    ConteynerNewTasck.classList = completed ? "tasck-items OK" : "tasck-items";
+    TasckText.classList = "tasck-text";
+    Icon1.classList = completed ? "bi bi-check2-square" : "bi bi-square";
+    ContentTasck.classList = "tasck-content";
+    moreIconsConteyner.classList = "right_icon-tasck";
+    Icon2.classList = "bi bi-trash";
+    Icon3.classList = "bi bi-pencil-square";
+
+    ContentTasck.innerHTML = text;
+
+    moreIconsConteyner.append(Icon2, Icon3);
+    TasckText.append(Icon1, ContentTasck);
+    ConteynerNewTasck.append(TasckText, moreIconsConteyner);
+
+    const taskBox = $.querySelector(".tasck-box");
+    taskBox.append(ConteynerNewTasck);
+
+    // Add event listeners
+    Icon2.addEventListener('click', function () {
+        deleteTask(id);
+    });
+    Icon1.addEventListener('click', function () {
+        toggleTaskCompletion(id);
+    });
+    Icon3.addEventListener('click', function () {
+        editTask(id);
+    });
+}
+
+// Add Task
 BtnElemtAddTasck.addEventListener('click', function () {
-    let ValueInputAddTasck = InuptElemtAddTasck.value
-    let ConteynerNewTasck = $.createElement("div")
-    let TasckText = $.createElement("div")
-    let Icon1 = $.createElement("i")
-    let ContentTasck = $.createElement("p")
-    let moreIconsConteyner = $.createElement("div")
-    let Icon2 = $.createElement("i")
-    let Icon3 = $.createElement("i")
-
-    ConteynerNewTasck.classList = "tasck-items"
-    TasckText.classList = "tasck-text"
-    Icon1.classList = "bi bi-square"
-    ContentTasck.classList = "tasck-content"
-    moreIconsConteyner.classList = "right_icon-tasck"
-    Icon2.classList = "bi bi-trash"
-    Icon3.classList = "bi bi-pencil-square"
-
-    ContentTasck.innerHTML = ValueInputAddTasck
-
-    moreIconsConteyner.append(Icon2, Icon3)
-    TasckText.append(Icon1, ContentTasck)
-    ConteynerNewTasck.append(TasckText, moreIconsConteyner)
-
-
-    let poshitem = $.querySelector(".tasck-box")
-    poshitem.append(ConteynerNewTasck)
-    console.log(poshitem);
-    InuptElemtAddTasck.value = ""
-    SelectNewIconTrash()
-    SelectNewIconCheckBox()
-    SelectNewIconEdit()
-    CountingTascks()
-    CheckNumberItems()
-})
-InuptElemtAddTasck.addEventListener('keydown', function (event) {
-    if (event.key == 'Enter') {
-        let ValueInputAddTasck = InuptElemtAddTasck.value
-        let ConteynerNewTasck = $.createElement("div")
-        let TasckText = $.createElement("div")
-        let Icon1 = $.createElement("i")
-        let ContentTasck = $.createElement("p")
-        let moreIconsConteyner = $.createElement("div")
-        let Icon2 = $.createElement("i")
-        let Icon3 = $.createElement("i")
-
-        ConteynerNewTasck.classList = "tasck-items"
-        TasckText.classList = "tasck-text"
-        Icon1.classList = "bi bi-square"
-        ContentTasck.classList = "tasck-content"
-        moreIconsConteyner.classList = "right_icon-tasck"
-        Icon2.classList = "bi bi-trash"
-        Icon3.classList = "bi bi-pencil-square"
-
-        ContentTasck.innerHTML = ValueInputAddTasck
-
-        moreIconsConteyner.append(Icon2, Icon3)
-        TasckText.append(Icon1, ContentTasck)
-        ConteynerNewTasck.append(TasckText, moreIconsConteyner)
-
-
-        let poshitem = $.querySelector(".tasck-box")
-        poshitem.append(ConteynerNewTasck)
-        console.log(poshitem);
-        InuptElemtAddTasck.value = ""
-        SelectNewIconTrash()
-        SelectNewIconCheckBox()
-        SelectNewIconEdit()
-        CountingTascks()
-        CheckNumberItems()
+    let text = InuptElemtAddTasck.value;
+    if (text.trim()) {
+        let tasks = loadTasks();
+        const newTask = { id: Date.now(), text: text, completed: false };
+        tasks.push(newTask);
+        saveTasks(tasks);
+        addTaskToDOM(newTask.text, newTask.completed, newTask.id);
+        InuptElemtAddTasck.value = '';
     }
+});
+InuptElemtAddTasck.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        BtnElemtAddTasck.click();
+    }
+});
 
-})
-// Delete Tasck
-function SelectNewIconTrash() {
-    let trashIcon = $.querySelectorAll('.bi-trash')
-    trashIcon.forEach(function (Trash) {
-        Trash.addEventListener('click', function (event) {
-            event.target.parentElement.parentElement.remove()
-            CountingTascks()
-            CheckNumberItems()
-        })
-    })
-}
-SelectNewIconTrash()
-// Tasck Status
-function SelectNewIconCheckBox() {
-    let CheckBoxIcon = $.querySelectorAll(".bi-square")
-    CheckBoxIcon.forEach(function (Check) {
-        Check.addEventListener('click', function (event) {
-
-
-            let ParentCheck = event.target.parentElement.parentElement
-
-            if (event.target.classList == "bi bi-square") {
-                ParentCheck.style.color = "#aaa"
-                ParentCheck.style.textDecoration = "line-through"
-                event.target.classList = "bi bi-check2-square"
-                ParentCheck.classList = "tasck-items OK"
-            } else {
-                ParentCheck.style.color = "#fff"
-                ParentCheck.style.textDecoration = "none"
-                event.target.classList = "bi bi-square"
-                ParentCheck.classList = "tasck-items"
-            }
-            CountingTascks()
-        })
-    })
+// Delete Task
+function deleteTask(id) {
+    let tasks = loadTasks();
+    tasks = tasks.filter(task => task.id !== id);
+    saveTasks(tasks);
+    renderTasks();
 }
 
-SelectNewIconCheckBox()
-//   Edit Tasck
-var Selectitemstasck = null
-function SelectNewIconEdit() {
-    let EditIcon = $.querySelectorAll(".bi-pencil-square")
-    EditIcon.forEach(function (Edit) {
-        Edit.addEventListener('click', function (event) {
-            let ParentEdit = event.target.parentElement.parentElement.firstElementChild.lastElementChild.innerHTML
-            InputElementEditTasck.style.display = 'block'
-            InputElementEditTasck.firstElementChild.value = ParentEdit
-            Selectitemstasck = event.target.parentElement.parentElement
-            SelectNewIconCheckBox()
-        })
-    })
+// Toggle Task Completion
+function toggleTaskCompletion(id) {
+    let tasks = loadTasks();
+    tasks = tasks.map(task => {
+        if (task.id === id) {
+            return { ...task, completed: !task.completed };
+        }
+        return task;
+    });
+    saveTasks(tasks);
+    renderTasks();
 }
-SelectNewIconEdit()
-const BtnEditor = $.querySelector("#BtnEditor")
-const BtnClese = $.querySelector("#BtnClese")
+
+// Edit Task
+var Selectitemstasck = null;
+function editTask(id) {
+    let tasks = loadTasks();
+    const taskToEdit = tasks.find(task => task.id === id);
+    InputElementEditTasck.style.display = 'block';
+    InputElementEditTasck.firstElementChild.value = taskToEdit.text;
+    Selectitemstasck = id;
+}
+
+const BtnEditor = $.querySelector("#BtnEditor");
+const BtnClese = $.querySelector("#BtnClese");
 
 BtnEditor.addEventListener('click', function () {
-    Selectitemstasck.firstElementChild.lastElementChild.innerHTML = InputElementEditTasck.firstElementChild.value
-    InputElementEditTasck.firstElementChild.value = ''
-    InputElementEditTasck.style.display = 'none'
-    SelectNewIconCheckBox()
-})
+    let tasks = loadTasks();
+    tasks = tasks.map(task => {
+        if (task.id === Selectitemstasck) {
+            return { ...task, text: InputElementEditTasck.firstElementChild.value };
+        }
+        return task;
+    });
+    saveTasks(tasks);
+    renderTasks();
+    InputElementEditTasck.style.display = 'none';
+    InputElementEditTasck.firstElementChild.value = '';
+});
 BtnClese.addEventListener('click', function () {
-    InputElementEditTasck.firstElementChild.value = ''
-    InputElementEditTasck.style.display = 'none'
-    SelectNewIconCheckBox()
-})
+    InputElementEditTasck.style.display = 'none';
+    InputElementEditTasck.firstElementChild.value = '';
+});
 
-
-// Counting Tascks
+// Counting Tasks
 function CountingTascks() {
-    let tasckBox = $.querySelectorAll(".tasck-items")
-    let tasckBoxOK = $.querySelectorAll(".bi-check2-square")
-    let numbertasck = $.querySelector(".numbertasck")
-    let numbertiktasck = $.querySelector(".numbertiktasck")
-    let tasckNumberText = $.querySelector(".tasck-number-text")
-    numbertiktasck.innerHTML = tasckBox.length
-    numbertasck.innerHTML = tasckBoxOK.length
-    console.log(tasckBoxOK.length)
-    if (tasckBox.length == tasckBoxOK.length) {
-        tasckNumberText.innerHTML = "همه کارارو به راه کردی"
+    let tasks = loadTasks();
+    let completedTasks = tasks.filter(task => task.completed).length;
+    let numbertasck = $.querySelector(".numbertasck");
+    let numbertiktasck = $.querySelector(".numbertiktasck");
+    let tasckNumberText = $.querySelector(".tasck-number-text");
+
+    numbertiktasck.innerHTML = tasks.length;
+    numbertasck.innerHTML = completedTasks;
+
+    if (tasks.length === completedTasks) {
+        tasckNumberText.innerHTML = "همه کارارو به راه کردی";
     } else {
-        tasckNumberText.innerHTML = "!هنوز کارات مونده"
+        tasckNumberText.innerHTML = "!هنوز کارات مونده";
     }
 }
-CountingTascks()
-// Text For Tasck conteyner
+
+// Text For Task container
 function CheckNumberItems() {
-    let tasckBox = $.querySelectorAll(".tasck-items")
-    let close = $.querySelector("#close")
-    if (tasckBox.length === 0) {
-        close.style.display = 'block'
-        close.style.color = '#fff'
+    let tasks = loadTasks();
+    let close = $.querySelector("#close");
+
+    if (tasks.length === 0) {
+        close.style.display = 'block';
+        close.style.color = '#fff';
     } else {
-        close.style.display = 'none'
+        close.style.display = 'none';
     }
-    console.log(tasckBox.length)
 }
-CheckNumberItems() 
+
+// Render tasks on page load
+renderTasks();
